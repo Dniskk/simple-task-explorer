@@ -3,6 +3,7 @@
   "displayName": "Simple Task Explorer",
   "description": "A minimal VS Code sidebar view that lists all available tasks with run/stop functionality",
   "version": "0.1.0",
+  "icon": "icons/icon.png",
   "publisher": "simple-task-explorer",
   "license": "MIT",
   "repository": {
@@ -28,7 +29,7 @@
         {
           "id": "simpleTaskExplorer",
           "title": "Task Explorer",
-          "icon": "$(terminal)"
+          "icon": "icons/icon_vscode.png"
         }
       ]
     },

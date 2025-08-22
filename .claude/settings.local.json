@@ -4,7 +4,9 @@
       "Bash(mkdir:*)",
       "Bash(npm install)",
       "Bash(npm run compile:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(npm run package:*)",
+      "Bash(unzip:*)"
     ],
     "deny": [],
     "ask": []
