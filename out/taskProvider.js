@@ -68,7 +68,13 @@ class TaskProvider {
     }
     async loadTasks() {
         try {
-            this.tasks = await vscode.tasks.fetchTasks();
+            const allTasks = await vscode.tasks.fetchTasks();
+            // Filter to only show VS Code defined tasks (from tasks.json or .code-workspace)
+            // Tasks from workspace configuration typically have source === 'Workspace'
+            this.tasks = allTasks.filter(task => {
+                // Only include tasks that are explicitly defined in workspace configuration
+                return task.source === 'Workspace';
+            });
         }
         catch (error) {
             vscode.window.showErrorMessage(`Failed to fetch tasks: ${error}`);
