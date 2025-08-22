@@ -1,11 +1,20 @@
 {
   "name": "simple-task-explorer",
   "displayName": "Simple Task Explorer",
-  "description": "A minimal VS Code sidebar view that lists all available tasks with run/stop functionality",
+  "description": "A minimal VS Code sidebar view for managing workspace tasks. Run, stop, and monitor tasks directly from the Activity Bar without clutter from auto-detected scripts.",
   "version": "0.1.0",
   "icon": "icons/icon.png",
   "publisher": "simple-task-explorer",
   "license": "MIT",
+  "keywords": [
+    "tasks",
+    "workspace",
+    "sidebar",
+    "task runner",
+    "build",
+    "automation",
+    "productivity"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/username/simple-task-explorer"
@@ -16,6 +25,11 @@
   "categories": [
     "Other"
   ],
+  "homepage": "https://github.com/username/simple-task-explorer#readme",
+  "bugs": {
+    "url": "https://github.com/username/simple-task-explorer/issues"
+  },
+  "readme": "EXTENSION.md",
   "extensionKind": [
     "ui"
   ],
