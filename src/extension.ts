@@ -37,7 +37,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(
         vscode.commands.registerCommand('simpleTaskExplorer.openView', () => {
-            treeView.reveal(undefined, { focus: true, select: false, expand: false });
+            vscode.commands.executeCommand('simpleTaskExplorer.view.focus');
         })
     );
 
