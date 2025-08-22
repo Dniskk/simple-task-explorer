@@ -97,7 +97,11 @@
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./"
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package",
+    "publish:openvsx": "ovsx publish",
+    "publish:check": "npm run compile && npm run package",
+    "prepackage": "npm run compile"
   },
   "devDependencies": {
     "@types/vscode": "^1.90.0",
