@@ -1,0 +1,107 @@
+{
+  "name": "simple-task-explorer",
+  "displayName": "Simple Task Explorer",
+  "description": "A minimal VS Code sidebar view that lists all available tasks with run/stop functionality",
+  "version": "0.1.0",
+  "publisher": "simple-task-explorer",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/username/simple-task-explorer"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "extensionKind": [
+    "ui"
+  ],
+  "activationEvents": [
+    "onView:simpleTaskExplorer.view"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "simpleTaskExplorer",
+          "title": "Task Explorer",
+          "icon": "$(terminal)"
+        }
+      ]
+    },
+    "views": {
+      "simpleTaskExplorer": [
+        {
+          "id": "simpleTaskExplorer.view",
+          "name": "Simple Task Explorer",
+          "when": "workspaceFolderCount > 0"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "simpleTaskExplorer.refresh",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "simpleTaskExplorer.runTask",
+        "title": "Run Task",
+        "icon": "$(play)"
+      },
+      {
+        "command": "simpleTaskExplorer.stopTask",
+        "title": "Stop Task",
+        "icon": "$(stop)"
+      },
+      {
+        "command": "simpleTaskExplorer.openView",
+        "title": "Open Task Explorer"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "simpleTaskExplorer.refresh",
+          "when": "view == simpleTaskExplorer.view",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "simpleTaskExplorer.runTask",
+          "when": "view == simpleTaskExplorer.view && viewItem == taskIdle",
+          "group": "inline"
+        },
+        {
+          "command": "simpleTaskExplorer.stopTask",
+          "when": "view == simpleTaskExplorer.view && viewItem == taskRunning",
+          "group": "inline"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Simple Task Explorer",
+      "properties": {
+        "simpleTaskExplorer.stopAllMatchingExecutions": {
+          "type": "boolean",
+          "default": true,
+          "description": "When stopping a task, terminate all executions with the same definition. If false, stop only the most recent."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.90.0",
+    "@types/node": "20.x",
+    "typescript": "^5.4.5"
+  }
+}
