@@ -48,7 +48,9 @@ class TaskItem extends vscode.TreeItem {
         this.tooltip = this.getTooltip();
         this.description = this.getDescription();
         this.contextValue = isRunning ? 'taskRunning' : 'taskIdle';
-        this.iconPath = new vscode.ThemeIcon('terminal');
+        this.iconPath = isRunning
+            ? new vscode.ThemeIcon('loading~spin')
+            : new vscode.ThemeIcon('terminal');
     }
     getTooltip() {
         const baseTooltip = `${this.task.name}\nType: ${this.task.definition.type}`;
@@ -59,7 +61,7 @@ class TaskItem extends vscode.TreeItem {
     }
     getDescription() {
         if (this.isRunning) {
-            return '$(play-circle) running';
+            return 'running';
         }
         return undefined;
     }
