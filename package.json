@@ -4,6 +4,10 @@
   "description": "A minimal VS Code sidebar view for managing workspace tasks. Run, stop, and monitor tasks directly from the Activity Bar without clutter from auto-detected scripts.",
   "version": "0.1.0",
   "icon": "icons/icon.png",
+  "galleryBanner": {
+    "color": "#2D3748",
+    "theme": "dark"
+  },
   "publisher": "simple-task-explorer",
   "license": "MIT",
   "keywords": [
@@ -29,7 +33,6 @@
   "bugs": {
     "url": "https://github.com/username/simple-task-explorer/issues"
   },
-  "readme": "EXTENSION.md",
   "extensionKind": [
     "ui"
   ],

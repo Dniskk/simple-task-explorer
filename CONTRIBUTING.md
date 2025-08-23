@@ -28,6 +28,26 @@ Thank you for your interest in contributing to Simple Task Explorer! This docume
    npm run compile
    ```
 
+### Installing from Source
+
+If you want to install the extension locally:
+
+1. **Install dependencies and build:**
+   ```bash
+   npm install
+   npm run compile
+   ```
+
+2. **Package the extension:**
+   ```bash
+   npm run package
+   ```
+
+3. **Install the .vsix file:**
+   ```bash
+   code --install-extension simple-task-explorer-*.vsix
+   ```
+
 ## Development Workflow
 
 ### Available Commands
