@@ -1,0 +1,63 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "test-project"
+dynamic = ["version"]
+description = 'Project to test venv activation'
+requires-python = ">=3.8"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "Dennis Kreber", email = "dnis.kk@gmail.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = []
+
+[project.urls]
+Documentation = "https://github.com/Dennis Kreber/test-project#readme"
+Issues = "https://github.com/Dennis Kreber/test-project/issues"
+Source = "https://github.com/Dennis Kreber/test-project"
+
+[tool.hatch.version]
+path = "src/test_project/__about__.py"
+
+[tool.hatch.envs.default.scripts]
+input = "python -m test_project"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/test_project tests}"
+
+[tool.coverage.run]
+source_pkgs = ["test_project", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/test_project/__about__.py",
+]
+
+[tool.coverage.paths]
+test_project = ["src/test_project", "*/test-project/src/test_project"]
+tests = ["tests", "*/test-project/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
