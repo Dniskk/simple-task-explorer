@@ -84,7 +84,34 @@ export class TaskProvider implements vscode.TreeDataProvider<TaskItem> {
 
     async runTask(taskItem: TaskItem): Promise<void> {
         try {
-            await vscode.tasks.executeTask(taskItem.task);
+            // Create a fresh task from the original task's definition to avoid
+            // issues with VS Code modifying the task object (e.g., venv activation
+            // paths being passed as arguments). This ensures a clean execution context.
+            const taskDefinition = taskItem.task.definition;
+            const scope = taskItem.task.scope;
+            const source = taskItem.task.source;
+            const execution = taskItem.task.execution;
+            const problemMatchers = taskItem.task.problemMatchers;
+            
+            // Create a new task with the same definition but fresh execution context
+            const task = new vscode.Task(
+                taskDefinition,
+                scope || vscode.TaskScope.Workspace,
+                taskItem.task.name,
+                source,
+                execution,
+                problemMatchers
+            );
+            
+            // Copy presentation options and run options if they exist
+            if (taskItem.task.presentationOptions) {
+                task.presentationOptions = taskItem.task.presentationOptions;
+            }
+            if (taskItem.task.runOptions) {
+                task.runOptions = taskItem.task.runOptions;
+            }
+            
+            await vscode.tasks.executeTask(task);
         } catch (error) {
             vscode.window.showErrorMessage(`Failed to run task "${taskItem.task.name}": ${error}`);
         }
